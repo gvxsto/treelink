@@ -8,11 +8,11 @@ const { icon, url } = Astro.props;
   <a
     href={url}
     aria-label={icon}
-    class="bg-lightModeIconLinkBackground dark:bg-darkModeIconLinkBackground hover:bg-lightModeIconLinkBackgroundHover dark:hover:bg-darkModeIconLinkBackgroundHover hover:ring-lightModeIconLinkOutlineHover dark:hover:ring-darkModeIconLinkOutlineHover group block rounded-full p-3 ring-[3px] ring-lightModeIconLinkOutline transition-all duration-200 hover:scale-110 dark:ring-darkModeIconLinkOutline button-shadow-small"
+    class="flex h-12 w-12 items-center justify-center rounded-full bg-[#f5f5dc] ring-[3px] ring-[#2d3b1f] transition-all duration-200 hover:scale-110 hover:bg-white button-shadow-small"
   >
     <Icon
       name={icon}
-      class="text-lightModeIconLinkText group-hover:text-lightModeIconLinkTextHover group-hover:dark:text-darkModeIconLinkTextHover dark:text-darkModeIconLinkText size-6 transition-colors"
+      class="size-6 text-[#2d3b1f]"
     />
   </a>
 </li>
