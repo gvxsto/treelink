@@ -9,7 +9,7 @@ const { data } = Astro.props.entry;
 const href = data.href;
 const label = data.title ?? data.href;
 const icon = data.icon ?? "";
-const meta = data.meta ?? ""; // optional small text on the right
+const meta = data.meta ?? "";
 ---
 
 <a class="link-pill" href={href} target="_blank" rel="noopener noreferrer">
