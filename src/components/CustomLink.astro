@@ -1,12 +1,28 @@
 ---
-const { text, icon, url } = Astro.props;
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  entry: CollectionEntry<"links">;
+};
+
+const { data } = Astro.props.entry;
+const href = data.href;
+const label = data.title ?? data.href;
+const icon = data.icon ?? "";
+const meta = data.meta ?? ""; // optional small text on the right
 ---
 
-<li>
-  <a
-    href={url}
-    class="hover:bg-lightModeCustomLinkBackgroundHover dark:hover:bg-darkModeCustomLinkBackgroundHover hover:ring-lightModeCustomLinkOutlineHover dark:hover:ring-darkModeCustomLinkOutlineHover hover:text-lightModeCustomLinkTextHover dark:hover:text-darkModeCustomLinkTextHover flex items-center justify-center gap-2 rounded-full bg-lightModeCustomLinkBackground px-6 py-3 text-lg text-lightModeCustomLinkText ring-2 ring-lightModeCustomLinkOutline transition-colors dark:bg-darkModeCustomLinkBackground dark:text-darkModeCustomLinkText dark:ring-darkModeCustomLinkOutline"
-  >
-    <slot />
-  </a>
-</li>
+<a class="link-pill" href={href} target="_blank" rel="noopener noreferrer">
+  <span class="link-pill-content">
+    {icon && (
+      <span class="link-pill-icon" aria-hidden="true">
+        {icon}
+      </span>
+    )}
+    <span class="link-pill-label">{label}</span>
+  </span>
+
+  <span class="link-pill-meta">
+    {meta ? meta : "···"}
+  </span>
+</a>
