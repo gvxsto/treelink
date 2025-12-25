@@ -1,28 +1,13 @@
 ---
-import type { CollectionEntry } from "astro:content";
-
-type Props = {
-  entry: CollectionEntry<"links">;
-};
-
-const { data } = Astro.props.entry;
-const href = data.href;
-const label = data.title ?? data.href;
-const icon = data.icon ?? "";
-const meta = data.meta ?? "";
+const { text, icon, url } = Astro.props;
 ---
 
-<a class="link-pill" href={href} target="_blank" rel="noopener noreferrer">
-  <span class="link-pill-content">
-    {icon && (
-      <span class="link-pill-icon" aria-hidden="true">
-        {icon}
-      </span>
-    )}
-    <span class="link-pill-label">{label}</span>
-  </span>
-
-  <span class="link-pill-meta">
-    {meta ? meta : "···"}
-  </span>
-</a>
+<li>
+  <a
+    href={url}
+    class="hover:bg-lightModeCustomLinkBackgroundHover dark:hover:bg-darkModeCustomLinkBackgroundHover hover:ring-lightModeCustomLinkOutlineHover dark:hover:ring-darkModeCustomLinkOutlineHover hover:text-lightModeCustomLinkTextHover dark:hover:text-darkModeCustomLinkTextHover flex items-center justify-center gap-2 rounded-full bg-lightModeCustomLinkBackground px-6 py-3 text-[15px] font-bold text-lightModeCustomLinkText ring-[3px] ring-lightModeCustomLinkOutline transition-all duration-200 hover:-translate-y-[2px] active:translate-y-[1px] dark:bg-darkModeCustomLinkBackground dark:text-darkModeCustomLinkText dark:ring-darkModeCustomLinkOutline button-shadow"
+    style="letter-spacing: -0.01em;"
+  >
+    <slot />
+  </a>
+</li>
