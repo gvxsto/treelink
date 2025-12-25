@@ -1,25 +1,29 @@
 ---
-import { Image } from "astro:assets";
+const avatar = "/profile-picture.png"; // change if you rename your image
+const name = "Trevor Tyler Lee";
+const tagline =
+  "Free, open source LinkTree alternative built with Astro & Tailwind CSS";
 
-import { SITE } from "@/siteConfig";
-
-import profilePicture from "@/assets/profile-picture.jpg";
+const socials = [
+  { href: "https://trevortylerlee.com", label: "Website", icon: "🔗" },
+  { href: "mailto:you@example.com", label: "Email", icon: "✉️" },
+  { href: "https://github.com/gvxsto", label: "GitHub", icon: "🐙" },
+  { href: "https://twitter.com", label: "Twitter", icon: "🐦" },
+];
 ---
 
-<div class="mt-8 py-4">
-  <Image
-    src={profilePicture}
-    alt={SITE.name}
-    height={256}
-    width={256}
-    loading="eager"
-    draggable="false"
-    class="mx-auto size-32 rounded-full"
-  />
-  <h1 class="mt-4 text-center text-3xl font-semibold">{SITE.name}</h1>
-  <p
-    class="mt-1 text-balance text-center text-sm text-lightModeForegroundMuted dark:text-darkModeForegroundMuted"
-  >
-    {SITE.bio}
-  </p>
-</div>
+<section class="treelink-intro" aria-label="Profile">
+  <img src={avatar} alt={name} loading="lazy" />
+
+  <h1>{name}</h1>
+
+  <p>{tagline}</p>
+
+  <div class="treelink-social-row" aria-label="Social links">
+    {socials.map((s) => (
+      <a href={s.href} target="_blank" rel="noopener noreferrer" title={s.label}>
+        <span aria-hidden="true">{s.icon}</span>
+      </a>
+    ))}
+  </div>
+</section>
