@@ -1,23 +1,16 @@
 ---
-import { SITE } from "@/siteConfig";
+import type { CollectionEntry } from "astro:content";
+import CustomLink from "./CustomLink.astro";
 
-import Introduction from "@/components/Introduction.astro";
-import IconLink from "@/components/IconLink.astro";
-import CustomLink from "@/components/CustomLink.astro";
+type Props = {
+  links: CollectionEntry<"links">[];
+};
+
+const { links } = Astro.props;
 ---
 
-<Introduction />
-<ul class="flex justify-center gap-4 py-12">
-  {
-    SITE.iconLinks.map((link) => {
-      return <IconLink url={link.url} icon={link.icon} />;
-    })
-  }
-</ul>
-<ul class="grid gap-y-6 pb-12 pt-4">
-  {
-    SITE.customLinks.map((link) => {
-      return <CustomLink url={link.url}>{link.title}</CustomLink>;
-    })
-  }
-</ul>
+<div aria-label="Links list">
+  {links.map((entry) => (
+    <CustomLink entry={entry} />
+  ))}
+</div>
