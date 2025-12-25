@@ -5,9 +5,16 @@ const { text, icon, url } = Astro.props;
 <li>
   <a
     href={url}
-    class="hover:bg-lightModeCustomLinkBackgroundHover dark:hover:bg-darkModeCustomLinkBackgroundHover hover:ring-lightModeCustomLinkOutlineHover dark:hover:ring-darkModeCustomLinkOutlineHover hover:text-lightModeCustomLinkTextHover dark:hover:text-darkModeCustomLinkTextHover flex items-center justify-center gap-2 rounded-full bg-lightModeCustomLinkBackground px-6 py-3 text-[15px] font-bold text-lightModeCustomLinkText ring-[3px] ring-lightModeCustomLinkOutline transition-all duration-200 hover:-translate-y-[2px] active:translate-y-[1px] dark:bg-darkModeCustomLinkBackground dark:text-darkModeCustomLinkText dark:ring-darkModeCustomLinkOutline button-shadow"
+    class="flex items-center justify-between gap-3 rounded-full bg-[#f5f5dc] px-4 py-3 text-[15px] font-bold text-[#2d3b1f] ring-[3px] ring-[#2d3b1f] transition-all duration-200 hover:-translate-y-[2px] hover:bg-white active:translate-y-[1px] button-shadow"
     style="letter-spacing: -0.01em;"
   >
-    <slot />
+    <span class="flex-1 text-left">
+      <slot />
+    </span>
+    <div class="flex gap-1">
+      <div class="h-2 w-2 rounded-full bg-[#2d3b1f] opacity-30"></div>
+      <div class="h-2 w-2 rounded-full bg-[#2d3b1f] opacity-30"></div>
+      <div class="h-2 w-2 rounded-full bg-[#2d3b1f] opacity-30"></div>
+    </div>
   </a>
 </li>
