@@ -1,175 +1,75 @@
-/* Global reset */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+
+    /* Pistachio theme colors */
+    --light-mode-background: 196 214 0; /* #c4d600 lime green */
+    --light-mode-foreground: 45 59 31; /* #2d3b1f dark green */
+    --light-mode-foreground-muted: 75 89 51;
+    
+    /* Icon Links (Social Icons) */
+    --light-mode-icon-link-outline: 45 59 31; /* dark border */
+    --light-mode-icon-link-background: 245 245 220; /* #f5f5dc beige */
+    --light-mode-icon-link-text: 45 59 31;
+    --light-mode-icon-link-outline-hover: 45 59 31;
+    --light-mode-icon-link-background-hover: 255 255 255;
+    --light-mode-icon-link-text-hover: 45 59 31;
+    
+    /* Custom Links (Main buttons) */
+    --light-mode-custom-link-outline: 45 59 31;
+    --light-mode-custom-link-background: 245 245 220; /* #f5f5dc beige */
+    --light-mode-custom-link-text: 45 59 31;
+    --light-mode-custom-link-outline-hover: 45 59 31;
+    --light-mode-custom-link-background-hover: 255 255 255;
+    --light-mode-custom-link-text-hover: 45 59 31;
+
+    /* Dark mode - keeping similar aesthetic */
+    --dark-mode-background: 45 59 31;
+    --dark-mode-foreground: 245 245 220;
+    --dark-mode-foreground-muted: 205 205 205;
+    --dark-mode-icon-link-outline: 196 214 0;
+    --dark-mode-icon-link-background: 0 0 0;
+    --dark-mode-icon-link-text: 245 245 220;
+    --dark-mode-icon-link-outline-hover: 196 214 0;
+    --dark-mode-icon-link-background-hover: 30 40 20;
+    --dark-mode-icon-link-text-hover: 245 245 220;
+    --dark-mode-custom-link-outline: 196 214 0;
+    --dark-mode-custom-link-background: 0 0 0;
+    --dark-mode-custom-link-text: 245 245 220;
+    --dark-mode-custom-link-outline-hover: 196 214 0;
+    --dark-mode-custom-link-background-hover: 30 40 20;
+    --dark-mode-custom-link-text-hover: 245 245 220;
+  }
+
+  body {
+    background-color: light-dark(
+      rgb(var(--light-mode-background)),
+      rgb(var(--dark-mode-background))
+    );
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
 }
 
-/* Page background + typography */
-:root {
-  --bg: #e7f4c2;            /* soft green */
-  --card-bg: #fdf7de;       /* light cream */
-  --accent: #274e13;        /* dark green */
-  --accent-soft: rgba(39, 78, 19, 0.12);
-  --text-main: #1d1b16;
-  --text-muted: #5f5b4f;
-  --radius-pill: 999px;
-  --radius-card: 26px;
-  --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.14);
-  --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Inter",
-    "SF Pro Text", sans-serif;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  min-height: 100vh;
-  background: radial-gradient(
-      circle at top left,
-      rgba(255, 255, 255, 0.55),
-      transparent 55%
-    ),
-    var(--bg);
-  color: var(--text-main);
-  font-family: var(--font-main);
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Main container (Treelink layout wrapper can use this) */
-.main-shell {
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 32px 18px 40px;
-}
-
-/* Heading / intro area */
-.treelink-intro {
-  text-align: center;
-  margin-bottom: 26px;
-}
-
-.treelink-intro img {
-  width: 110px;
-  height: 110px;
-  border-radius: 999px;
-  object-fit: cover;
-  border: 4px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
-  margin-bottom: 14px;
-}
-
-.treelink-intro h1 {
-  font-size: 1.9rem;
-  letter-spacing: 0.02em;
-  font-weight: 800;
-}
-
-.treelink-intro p {
-  margin-top: 6px;
-  font-size: 0.92rem;
-  color: var(--text-muted);
-}
-
-/* Social icons row under description */
-.treelink-social-row {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  margin-top: 12px;
-}
-
-.treelink-social-row a {
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.8);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* Links section */
-.links-stack {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* Pill buttons (main style) */
-.link-pill {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  border-radius: var(--radius-pill);
-  padding: 14px 18px;
-  background: var(--card-bg);
-  border: 2px solid var(--accent);
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.98rem;
-  box-shadow: 0 8px 20px var(--accent-soft);
-  transition: transform 0.12s ease-out, box-shadow 0.12s ease-out,
-    background 0.12s ease-out, border-color 0.12s ease-out;
-}
-
-/* Left icon + text alignment */
-.link-pill-content {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.link-pill-icon {
-  width: 26px;
-  height: 26px;
-  border-radius: 999px;
-  border: 2px solid var(--accent);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  background: var(--card-bg);
-}
-
-.link-pill-label {
-  text-align: left;
-}
-
-/* Right-side dots / arrow area */
-.link-pill-meta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent);
-  opacity: 0.8;
-}
-
-/* Hover / press */
-.link-pill:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
-  background: #fff8e7;
-}
-
-.link-pill:active {
-  transform: translateY(0);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
-}
-
-/* Small footer text */
-.treelink-footer {
-  margin-top: 28px;
-  text-align: center;
-  font-size: 0.76rem;
-  color: var(--text-muted);
+@layer utilities {
+  .button-shadow {
+    box-shadow: 0 4px 0 0 rgba(45, 59, 31, 0.4);
+  }
+  
+  .button-shadow-small {
+    box-shadow: 0 3px 0 0 rgba(45, 59, 31, 0.4);
+  }
+  
+  .dark .button-shadow {
+    box-shadow: 0 4px 0 0 rgba(196, 214, 0, 0.4);
+  }
+  
+  .dark .button-shadow-small {
+    box-shadow: 0 3px 0 0 rgba(196, 214, 0, 0.4);
+  }
 }
